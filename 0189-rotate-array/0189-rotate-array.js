@@ -3,23 +3,28 @@
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
+
+
+
 var rotate = function (nums, k) {
 
     let n = nums.length
     let d = k % n
-    let temp = []
-    for (let i = n - d; i < n; i++) {
-        temp[i - (n - d)] = nums[i]
-    }
 
-    for (let i = n - d - 1; i >= 0; i--) {
-        nums[i + d] = nums[i]
-    }
+    reverse(nums, 0, n - d - 1)
+    reverse(nums, n - d, n - 1)
+    reverse(nums, 0, n - 1)
 
-    for (let i = 0; i < d; i++) {
-        nums[i] = temp[i]
-    }
 };
+
+function reverse(nums, start, end) {
+    while (start < end) {
+        ;[nums[start], nums[end]] = [nums[end], nums[start]]
+        start++
+        end--
+    }
+}
+
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
