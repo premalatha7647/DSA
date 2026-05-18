@@ -6,19 +6,18 @@ var moveZeroes = function (nums) {
     let n = nums.length;
     let count = 0;
     let i = 0;
-    while (i < n - count) {
-        if (nums[i] === 0) {
-            for (let j = i + 1; j < n - count; j++) {
-                nums[j - 1] = nums[j];
-            }
-            nums[n - 1 - count] = 0;
-            count++;
-        }
-        if (nums[i] != 0) {
+    for (let j = 0; j < n; j++) {
+        if (nums[j] != 0) {
+            nums[i] = nums[j];
             i++;
         }
-       
     }
+
+    for (let j = i; j < n; j++) {
+        nums[j] = 0;
+    }
+
+
 };
 
 // Synced seamlessly with LeetHub Pro
