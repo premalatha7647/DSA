@@ -3,15 +3,16 @@
  * @return {number}
  */
 var singleNumber = function (nums) {
+    let singleNum = 0;
     let n = nums.length;
-    let map = new Map();
     for (let i = 0; i < n; i++) {
-        map.set(nums[i], (map.get(nums[i]) || 0) + 1);
-    }
-
-    for (const [key, value] of map) {
-        if (value === 1) {
-            return key
+        let count = 0;
+        singleNum = nums[i];
+        for (let j = 0; j < n; j++) {
+            if (singleNum === nums[j]) count++;
+        }
+        if (count === 1) {
+            return singleNum
         }
     }
 };
