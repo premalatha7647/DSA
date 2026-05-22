@@ -4,20 +4,19 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-    let targetArray = [];
     let n = nums.length;
+    let map = new Map();
     for (let i = 0; i < n; i++) {
-        for (let j = i + 1; j < n; j++) {
-            if (nums[i] + nums[j] === target) {
-                targetArray.push(i, j);
-                break;
-            }
+        let rem = target - nums[i];
+
+        if (map.has(rem)) {
+            return ([map.get(rem), i]);
         }
-        if (targetArray.length > 0) {
-            break;
+
+        if (!map.has(nums[i])) {
+            map.set(nums[i], i);
         }
     }
-    return targetArray
 };
 
 // Synced seamlessly with LeetHub Pro
