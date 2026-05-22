@@ -10,12 +10,10 @@ var twoSum = function (nums, target) {
         let rem = target - nums[i];
 
         if (map.has(rem)) {
-            return ([map.get(rem), i]);
+            return [map.get(rem), i];
         }
 
-        if (!map.has(nums[i])) {
-            map.set(nums[i], i);
-        }
+        map.set(nums[i], i);
     }
 };
 
