@@ -3,20 +3,19 @@
  * @return {number}
  */
 var majorityElement = function (nums) {
-    const map = new Map()
-    const n = nums.length
-    const maxCount = Math.floor(n / 2)
-    let maxElement = 0
+    const map = new Map();
+    const n = nums.length;
+    const maxCount = Math.floor(n / 2);
     for (let i = 0; i < n; i++) {
-        map.set(nums[i], (map.get(nums[i]) || 0) + 1)
+        map.set(nums[i], (map.get(nums[i]) || 0) + 1);
     }
 
     for (const [key, value] of map) {
         if (value > maxCount) {
-            maxElement = key
+            return key;
         }
     }
-    return maxElement
+    return -1;
 };
 
 // Synced seamlessly with LeetHub Pro
