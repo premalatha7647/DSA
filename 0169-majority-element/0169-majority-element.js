@@ -3,18 +3,21 @@
  * @return {number}
  */
 var majorityElement = function (nums) {
-    const map = new Map()
-    const n = nums.length
-    let maxElement = 0
-    let count = 0
+    let maxElement = -Infinity;
+    let count = 0;
+    const n = nums.length;
     for (let i = 0; i < n; i++) {
-        map.set(nums[i], (map.get(nums[i]) || 0) + 1)
-    }
-
-    for (const [key, value] of map) {
-        if (value > count) {
-            count = value
-            maxElement = key
+        let tempCount = 0;
+        if (nums[i] != maxElement) {
+            for (let j = i; j < n; j++) {
+                if (nums[i] === nums[j] && nums[j] != maxElement) {
+                    tempCount++;
+                }
+            }
+            if (tempCount > count) {
+                count = tempCount;
+                maxElement = nums[i];
+            }
         }
     }
     return maxElement
