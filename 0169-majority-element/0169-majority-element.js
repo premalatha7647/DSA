@@ -5,6 +5,7 @@
 var majorityElement = function (nums) {
     let maxElement = -Infinity;
     const n = nums.length;
+    const maxCount = Math.floor(n / 2)
     for (let i = 0; i < n; i++) {
         if (nums[i] != maxElement) {
             let count = 0;
@@ -13,7 +14,7 @@ var majorityElement = function (nums) {
                     count++;
                 }
             }
-            if (count > Math.floor(n / 2)) {
+            if (count > maxCount) {
                 maxElement = nums[i];
             }
         }
