@@ -4,18 +4,16 @@
  */
 var majorityElement = function (nums) {
     let maxElement = -Infinity;
-    let count = 0;
     const n = nums.length;
     for (let i = 0; i < n; i++) {
-        let tempCount = 0;
         if (nums[i] != maxElement) {
+            let count = 0;
             for (let j = i; j < n; j++) {
                 if (nums[i] === nums[j] && nums[j] != maxElement) {
-                    tempCount++;
+                    count++;
                 }
             }
-            if (tempCount > count) {
-                count = tempCount;
+            if (count > Math.floor(n / 2)) {
                 maxElement = nums[i];
             }
         }
