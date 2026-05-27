@@ -3,20 +3,48 @@
  * @return {number}
  */
 var majorityElement = function (nums) {
-    const map = new Map();
-    const n = nums.length;
-    const maxCount = Math.floor(n / 2);
+    let ele,
+        count = 0;
+    let n = nums.length;
     for (let i = 0; i < n; i++) {
-        map.set(nums[i], (map.get(nums[i]) || 0) + 1);
-    }
-
-    for (const [key, value] of map) {
-        if (value > maxCount) {
-            return key;
+        if (count === 0) {
+            count = 1;
+            ele = nums[i];
+        } else if (nums[i] === ele) {
+            count++;
+        } else {
+            count--;
         }
     }
-    return -1;
+    return ele
 };
+
+// only if the majority not confirmed
+// var majorityElement = function (nums) {
+//     let ele,
+//         count = 0;
+//     let n = nums.length;
+//     for (let i = 0; i < n; i++) {
+//         if (count === 0) {
+//             count = 1;
+//             ele = nums[i];
+//         } else if (nums[i] === ele) {
+//             count++;
+//         } else {
+//             count--;
+//         }
+//     }
+//     let count1 = 0;
+//     for (let i = 0; i < n; i++) {
+//         if (ele === nums[i]) {
+//             count1++;
+//         }
+//     }
+//     if (count1 > Math.floor(n / 2)) {
+//         return ele;
+//     }
+//     return -1;
+// };
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
