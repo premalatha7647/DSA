@@ -3,6 +3,8 @@
  * @return {number}
  */
 var maxSubArray = function (nums) {
+    if (!nums || !nums.length) return 0
+
     let maxSum = -Infinity;
     let n = nums.length;
     let sum = 0;
