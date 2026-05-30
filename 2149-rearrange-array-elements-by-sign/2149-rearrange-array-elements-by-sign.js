@@ -3,21 +3,33 @@
  * @return {number[]}
  */
 var rearrangeArray = function (nums) {
-    let n = nums.length;
-    let tempP = [],
-        tempN = [];
-
-    for (let i = 0; i < n; i++) {
-        if (nums[i] >= 0) tempP.push(nums[i]);
-        else tempN.push(nums[i]);
+    let i = 0,
+        j = 0
+    let n = nums.length
+    let temp = []
+    while (i < n && j < n) {
+        if (nums[i] > 0) {
+            temp.push(nums[i])
+            i++
+        } else {
+            while (nums[i] < 0) {
+                i++
+            }
+            temp.push(nums[i])
+            i++
+        }
+        if (nums[j] < 0) {
+            temp.push(nums[j])
+            j++
+        } else {
+            while (nums[j] > 0) {
+                j++
+            }
+            temp.push(nums[j])
+            j++
+        }
     }
-    let i = 0;
-    while (i < n / 2) {
-        nums[i + i] = tempP[i];
-        nums[i + i + 1] = tempN[i];
-        i++;
-    }
-    return nums
+    return temp
 };
 
 // Synced seamlessly with LeetHub Pro
