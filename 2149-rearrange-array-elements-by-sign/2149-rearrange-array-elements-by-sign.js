@@ -2,24 +2,46 @@
  * @param {number[]} nums
  * @return {number[]}
  */
+
+// when the element is not n/2
 var rearrangeArray = function (nums) {
     let n = nums.length;
     let ansArray = []
-    let positiveIndex = 0;
-    let negativeIndex = 1;
+    let positiveArray = [];
+    let negativeArray = [];
 
     for (let i = 0; i < n; i++) {
-        if (nums[i] < 0) {
-            ansArray[negativeIndex] = nums[i];
-            negativeIndex += 2;
+        if (nums[i] < 0)
+            negativeArray.push(nums[i])
+        else
+            positiveArray.push(nums[i])
+    }
+
+    if (negativeArray.length < positiveArray.length) {
+        for (let i = 0; i < negativeArray.length; i++) {
+            nums[2 * i] = positiveArray[i]
+            nums[2 * i + 1] = negativeArray[i]
         }
-        else {
-            ansArray[positiveIndex] = nums[i];
-            positiveIndex += 2;
+
+        let index = negativeArray.length * 2
+        for (let i = index; i < n; i++) {
+            nums[index] = positiveArray[i];
+            index++
+        }
+    } else {
+        for (let i = 0; i < positiveArray.length; i++) {
+            nums[2 * i] = positiveArray[i]
+            nums[2 * i + 1] = negativeArray[i]
+        }
+
+        let index = positiveArray.length * 2
+        for (let i = index; i < n; i++) {
+            nums[index] = negativeArray[i];
+            index++
         }
     }
 
-    return ansArray
+    return nums
 };
 
 // Synced seamlessly with LeetHub Pro
