@@ -3,23 +3,21 @@
  * @return {number}
  */
 var longestConsecutive = function (nums) {
-    let n = nums.length
-    if (!n)
-        return n
-
-    nums = nums.sort((a, b) => a - b)
+    let n = nums.length;
+    if (!n) return 0;
     let longest = 1;
-    let currentCount = 0;
-    let lastSmaller = nums[0] - 1
-    for (let i = 0; i < n; i++) {
-        if (nums[i] - 1 === lastSmaller) {
-            currentCount += 1;
-            lastSmaller = nums[i]
-        } else if (nums[i] != lastSmaller) {
-            currentCount = 1;
-            lastSmaller = nums[i]
+    let st = new Set(nums);
+
+    for (let it of st) {
+        if (!st.has(it - 1)) {
+            let count = 1;
+            let x = it;
+            while (st.has(x + 1)) {
+                x += 1;
+                count += 1;
+            }
+            longest = Math.max(longest, count);
         }
-        longest = Math.max(longest, currentCount)
     }
     return longest
 };
